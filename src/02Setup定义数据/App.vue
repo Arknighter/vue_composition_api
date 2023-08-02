@@ -12,6 +12,7 @@
 
     <h2>当前计数：{{ number }}</h2>
     <button @click="AddNumberBtn">+1</button>
+    <button @click="number--">-1</button>
 </template>
 
 <script>
@@ -25,6 +26,14 @@ export default {
         const number = ref(1)
         //定义响应式数据   用reactive   reactive定义复杂数据
         //简单数据用ref   也可以定义复杂类型数据
+        //总结 
+        //  reactive
+        //一般用ref的多，ref也可以定义复杂类型的数据
+        //而reactive的应用场景 一般多用于本地复杂数据
+        //多个数据之间是有关系/联系的（聚合数据，组合在一起会有特定作用） 如登录的密码，表单啥的
+        //  ref
+        //ref得.value
+        // 其他场景基本上都是ref，  本地的一些简单数据，定义从网络中获取的数据用ref
         let fullName = reactive({
             name: "yjh",
             age: 18
