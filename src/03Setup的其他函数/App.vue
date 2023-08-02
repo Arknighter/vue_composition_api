@@ -7,6 +7,7 @@
 </template>
 
 <script>
+//readonly
 import { reactive } from 'vue';
 import ShowInfo from './ShowInfo.vue'
 export  default{
