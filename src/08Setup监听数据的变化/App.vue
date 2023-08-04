@@ -1,92 +1,31 @@
 <template>
-    <h2>App 监听</h2>
-    <button @click="msgBtn"> 修改数据</button>
-
-    <el-button>我是 ElButton</el-button>
-
-    <el-carousel :interval="5000" arrow="always">
-    <el-carousel-item v-for="item in 4" :key="item">
-      <h3 text="2xl" justify="center">{{ item }}</h3>
-    </el-carousel-item>
-    </el-carousel>
-
-    <div class="flex flex-wrap items-center">
-    <el-dropdown>
-      <el-button type="primary">
-        Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
-      </el-button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item>Action 1</el-dropdown-item>
-          <el-dropdown-item>Action 2</el-dropdown-item>
-          <el-dropdown-item>Action 3</el-dropdown-item>
-          <el-dropdown-item>Action 4</el-dropdown-item>
-          <el-dropdown-item>Action 5</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-    </div>
+    <h2> wacthEffect</h2>
+    <h2> {{ counter }}</h2>
+    <button @click="counter++">++</button>
 </template>
-
 <script>
-import { ref, watch } from 'vue'
-import { ArrowDown } from '@element-plus/icons-vue'
+import { watchEffect, ref } from 'vue';
+
 
 export default {
-    components:{
-        ArrowDown
-    },
     setup() {
-
-        const msg = ref("hello")
-
-        const msgBtn = () => {
-            msg.value = "new hello"
-        }
-
-        watch(msg, (newValue, oldeValue) => {
-            console.log("newmsg=" + newValue, "old=" + oldeValue);
+        const counter = ref(0)
+        //watcjeffect  传入的函数默认会直接执行
+        //且会在执行的过程，会"自动"收集依赖（依赖哪些响应式数据），就是依赖发生变化时，watcheffect传入的函数才会执行
+        // watcheffect 有个返回值的  可以利用返回值停止监听
+        const stopWatch = watchEffect(() => {
+            //出发上面的 @click="counter++"  每一次  都会调用下面的
+            console.log("-------------" + counter.value)
+             //停止watchEffect监听
+            if (counter.value >= 10) {
+                stopWatch()
+            }
         })
-
-        const handleClick = () => {
-            // eslint-disable-next-line no-alert
-            alert('button click')
-        }
         return {
-            msg,
-            msgBtn,
-            handleClick
+            counter,
+            stopWatch
         }
     }
-
 }
-
-
 </script>
-<style scoped>
-.el-carousel__item h3 {
-  color: #475669;
-  opacity: 0.75;
-  line-height: 300px;
-  margin: 0;
-  text-align: center;
-}
-
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
-
-.example-showcase .el-dropdown + .el-dropdown {
-  margin-left: 15px;
-}
-.example-showcase .el-dropdown-link {
-  cursor: pointer;
-  color: var(--el-color-primary);
-  display: flex;
-  align-items: center;
-  }
-</style>
+<style scoped></style>
