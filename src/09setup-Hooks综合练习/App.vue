@@ -10,8 +10,12 @@
     <!-- <keep-alive> -->
         <component :is="currentPage"></component>
     <!-- </keep-alive> -->
-    
-
+    <div class="bot"></div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br><br><br><br><br><br>
 
 </template>
 <script>
@@ -39,4 +43,10 @@ import { ref } from 'vue'
         }
     }
 </script>
-<style scoped></style>
+<style scoped>
+.bot {
+    width: 100%;
+    height: 900px;
+    background-color: aqua;
+}
+</style>
