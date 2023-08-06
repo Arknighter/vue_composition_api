@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import './11setup综合训练/assets/recss.css'
 
 // import App from './01Setup体验/App.vue'
 // import App from './02Setup定义数据/App.vue'
@@ -10,7 +11,9 @@ import 'element-plus/dist/index.css'
 // import App from './06Setup中ref引入元素/App.vue'
 // import App from './07Setup生命周期函数/App.vue'
 // import App from './08Setup监听数据的变化/App.vue'
-import App from './09setup-Hooks综合练习/App.vue'
+// import App from './09setup-Hooks综合练习/App.vue'
+// import App from './10setup语法糖/App.vue'
+import App from './11setup综合训练/App.vue'
 
 // import App from './02Setup定义数据/AppCat.vue'
 
