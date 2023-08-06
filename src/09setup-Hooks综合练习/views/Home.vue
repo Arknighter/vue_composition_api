@@ -5,9 +5,15 @@
 </template>
 
 <script>
+import { onActivated } from 'vue'
 import userCounter  from '../hooks/useCounter'
+import useTitle from '../hooks/useTitle'
     export default{
-        setup(){            
+        setup(){
+            // onActivated:{
+            //     useTitle('Home') 
+            // }
+            useTitle('Home')            
             const { counter,increment,decrement } = userCounter()
             return {
                 counter,
